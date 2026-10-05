@@ -25,13 +25,33 @@ public class WeatherSummary {
 
         //import temps file and set up scanner to read through each double
         File tempFile = new File("temps");
+
+        //create variables to track highest and lowest
+        double max = 0;
+        double min = 0;
         try(java.util.Scanner tempScan = new Scanner(tempFile)){
             while(tempScan.hasNextDouble()){
                 double temp = tempScan.nextDouble();
-                System.out.println(temp);
+                //set trackers to current if at default value
+                if(max == 0){
+                    max = temp;
+                }
+                if(min == 0){
+                    min = temp;
+                }
+                //compare values and update trackers
+                if(temp>max){
+                    max = temp;
+                }
+                if(temp<min){
+                    min = temp;
+                }
             }
         } catch(FileNotFoundException e){
             System.out.println("Error.");
         }
+        //Print results
+        System.out.println("Max: "+max);
+        System.out.println("Min: "+min);
     }
 }
