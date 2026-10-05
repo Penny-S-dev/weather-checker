@@ -29,6 +29,10 @@ public class WeatherSummary {
         //create variables to track highest and lowest
         double max = 0;
         double min = 0;
+
+        //Add trackers to calculate avg
+        double total = 0;
+        int count = 0;
         try(java.util.Scanner tempScan = new Scanner(tempFile)){
             while(tempScan.hasNextDouble()){
                 double temp = tempScan.nextDouble();
@@ -46,12 +50,17 @@ public class WeatherSummary {
                 if(temp<min){
                     min = temp;
                 }
+                //Add current value to toal and increment count for calculations
+                total += temp;
+                count++;
             }
         } catch(FileNotFoundException e){
             System.out.println("Error.");
         }
+        double avg= total/count;
         //Print results
         System.out.println("Max: "+max);
         System.out.println("Min: "+min);
+        System.out.println("Avg: "+avg);
     }
 }
