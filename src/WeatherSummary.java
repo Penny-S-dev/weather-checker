@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 public class WeatherSummary {
     /**
      * Reads newline-delimted temperatures from System.in and prints summary
@@ -18,5 +22,16 @@ public class WeatherSummary {
     public static void main(String[] args) {
         // Implement this method!
         // Hint: use Scanner. nextDouble() and hasNextDouble() will be helpful here!
+
+        //import temps file and set up scanner to read through each double
+        File tempFile = new File("temps");
+        try(java.util.Scanner tempScan = new Scanner(tempFile)){
+            while(tempScan.hasNextDouble()){
+                double temp = tempScan.nextDouble();
+                System.out.println(temp);
+            }
+        } catch(FileNotFoundException e){
+            System.out.println("Error.");
+        }
     }
 }
